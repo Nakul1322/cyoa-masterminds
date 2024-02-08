@@ -1,0 +1,1022 @@
+openapi: 3.0.0
+info:
+  title: Robert
+  version: 1.0.0
+servers:
+  - url: http://localhost:3005
+  - url: https://18.197.161.123
+  - url: https://52.58.73.111
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+tags:
+  - name: Auth
+  - name: Story
+  - name: Scene
+  - name: Choice
+  - name: Users
+paths:
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: nakul2@yopmail.com
+                password: Test@12345
+                device_id: 8BE723AA-9082-43D7-9xcfvghbjn783-49hA
+                device_type: ios
+                device_token: flmyNUaQvU3nviJU640ZH91bFyfZ42-rudfghjklsdtfgyuhijok
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/getProfile:
+    get:
+      tags:
+        - Auth
+      summary: get Profile
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/send-otp:
+    post:
+      tags:
+        - Auth
+      summary: Send OTP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: nakul2@yopmail.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/verify-otp:
+    post:
+      tags:
+        - Auth
+      summary: Verify OTP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: adminrobert@yopmail.com
+                otp: '6732'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/change-password:
+    patch:
+      tags:
+        - Auth
+      summary: Change Password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                oldPassword: Admin@1234
+                newPassword: Admin@1234
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/creator/send-invite:
+    post:
+      tags:
+        - Auth
+      summary: Send Invite
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Aastha
+                email: aastha5@yopmail.com
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/getEmail:
+    get:
+      tags:
+        - Auth
+      summary: get email
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/creator/signup:
+    post:
+      tags:
+        - Auth
+      summary: SignUp
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                password: Test@1234
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/logout:
+    post:
+      tags:
+        - Auth
+      summary: Logout
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /story/status:
+    get:
+      tags:
+        - Story
+      summary: Find All Stories Based On Status and Creator Id
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: size
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: creator_id
+          in: query
+          schema:
+            type: string
+          example: 62c669ff1f43e7448cb8ae8e
+        - name: status
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /story/62fe132cff54f9786ec2ecd6:
+    get:
+      tags:
+        - Story
+      summary: Find Story
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /story/cover/image:
+    post:
+      tags:
+        - Story
+      summary: upload Image
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                cover_image:
+                  type: string
+                  format: binary
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /story/cover/add:
+    post:
+      tags:
+        - Story
+      summary: Add Story
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                cover_title: this story is not for delete
+                cover_description: description description here please dont delete
+                cover_image: >-
+                  https://robert2022.s3.ap-south-1.amazonaws.com/651bbb90-1edf-11ed-abc1-7711cf5a65fcScreenshot%20from%202022-08-18%2012-15-43.png
+                threshold: 10
+                baseline:
+                  - title: Hello
+                    value: '10'
+                  - title: Manaaaa
+                    value: '15'
+                  - title: WILL POWER
+                    value: '15'
+                stat_set:
+                  - title: Statistics
+                    items:
+                      - name: Proin diam
+                        value: '5'
+                      - name: Proin diam
+                        value: '10'
+                      - name: Proin diam
+                        value: '30'
+                      - name: Proin diam
+                        value: '40'
+                  - title: Reputation
+                    items:
+                      - name: Proin diam
+                        value: '10'
+                      - name: Proin diam
+                        value: '10'
+                      - name: Proin diam
+                        value: '10'
+                      - name: Proin diam
+                        value: '10'
+                      - name: Proin diam
+                        value: '10'
+                  - title: Inventory
+                    items:
+                      - name: Invent
+                        value: '10'
+                      - name: Invent
+                        value: '10'
+                      - name: Invent
+                        value: '10'
+                      - name: Invent
+                        value: '10'
+                      - name: Invent
+                        value: '10'
+                  - title: Logical
+                    items:
+                      - name: logic
+                        value: '10'
+                      - name: logic
+                        value: '10'
+                      - name: logic
+                        value: '10'
+                      - name: logic
+                        value: '10'
+                      - name: logic
+                        value: '10'
+                      - name: logic
+                        value: '10'
+                  - title: Reasoning
+                    items:
+                      - name: reason
+                        value: '10'
+                      - name: reason
+                        value: '10'
+                      - name: reason
+                        value: '10'
+                      - name: reason
+                        value: '10'
+                      - name: reason
+                        value: '10'
+                      - name: reason
+                        value: '10'
+                      - name: reason
+                        value: '10'
+                      - name: reason
+                        value: '10'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /story/cover/edit/62d15c8e1e1775c3f149a9b5:
+    put:
+      tags:
+        - Story
+      summary: Update Story
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                cover_title: 48 laws of destruction
+                cover_description: power power power
+                cover_image: >-
+                  https://robert2022.s3.ap-south-1.amazonaws.com/73b69770-171d-11ed-9d46-67c079a482c112.jpg
+                baseline:
+                  - title: doneeeeeee
+                    value: 5
+                    _id: 62f10d95dee9ec9ed4a91c7d
+                  - title: wallahhhhhhhhh
+                    value: '5'
+                stat_set:
+                  - _id: 62d15c8e1e1775c3f149a9ba
+                    title: yooooooooo
+                    items:
+                      - name: yahhhhhhhh
+                        value: 20
+                        hidden: false
+                  - title: hurrayyyyyyyyyy
+                    items:
+                      - name: doneeeeeeeeeeeeeeeeee
+                        value: 30
+                        hidden: false
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /story/delete/6304a74f953b260d0a32d286:
+    delete:
+      tags:
+        - Story
+      summary: Delete Story
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /story/requestStory:
+    patch:
+      tags:
+        - Story
+      summary: Request Story
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+        - name: story_id
+          in: query
+          schema:
+            type: string
+          example: 63047693953b260d0a32cebc
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /story/approveRejectStory:
+    patch:
+      tags:
+        - Story
+      summary: Approve / Reject Story
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                action: 2
+                isPaid: true
+                freeScene: 2
+                amount: 900
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+        - name: story_id
+          in: query
+          schema:
+            type: string
+          example: 63034bd56288954a351f1e51
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /story/62fe132cff54f9786ec2ecd6/scene/1:
+    get:
+      tags:
+        - Scene
+      summary: Find Scene
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /scene/sceneTree/630c5df9b4447d757a21fa89:
+    get:
+      tags:
+        - Scene
+      summary: Scene Tree
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /scene/add:
+    post:
+      tags:
+        - Scene
+      summary: Add Scene
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                scene_name: scene 8
+                description: >-
+                  qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbqwertyuiop
+                story_id: 62fe132cff54f9786ec2ecd6
+                scene_index: 8
+                death_screen: true
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /scene/edit/62eb5b0c971eb1db52261c37:
+    put:
+      tags:
+        - Scene
+      summary: Update Scene
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                scene_name: Aastha
+                description: aastha scene1
+                death_screen: true
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /scene/delete/62c7fde30fce19f46703ae21:
+    delete:
+      tags:
+        - Scene
+      summary: Delete Scene
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /choice/variables/630cb19bb4447d757a220415:
+    get:
+      tags:
+        - Choice
+      summary: get Variable
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /scene/redirection:
+    get:
+      tags:
+        - Choice
+      summary: Redirection Screen
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+        - name: story_id
+          in: query
+          schema:
+            type: string
+          example: 62de917719068dcdb3b5f552
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /choice/add:
+    post:
+      tags:
+        - Choice
+      summary: Add Choice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                scene_id: 62fe139dff54f9786ec2ed39
+                story_id: 62fe132cff54f9786ec2ecd6
+                choices:
+                  - title: Choice 1 Title Here
+                    condition:
+                      variable:
+                        baseline_id: 62fe132cff54f9786ec2ecd7
+                        operator: '>'
+                        value: 20
+                        true_outcome:
+                          baseline_id: 62fe132cff54f9786ec2ecd8
+                          operator: +
+                          value: 5
+                          linked_scene_index: 2
+                        false_outcome:
+                          baseline_id: 62fe132cff54f9786ec2ecd7
+                          operator: '-'
+                          value: '5'
+                          linked_scene_index: 4
+                  - title: Choice 2 Title Here
+                    condition:
+                      variable:
+                        statset_id: 62fe132cff54f9786ec2ecdb
+                        item_id: 62fe132cff54f9786ec2ecdc
+                        operator: '>'
+                        value: 20
+                        true_outcome:
+                          statset_id: 62fe132cff54f9786ec2ecdb
+                          item_id: 62fe132cff54f9786ec2ecdc
+                          operator: +
+                          value: 5
+                          linked_scene_index: 2
+                        false_outcome:
+                          statset_id: 62fe132cff54f9786ec2ecdb
+                          item_id: 62fe132cff54f9786ec2ecdd
+                          operator: '-'
+                          value: '5'
+                          linked_scene_index: 3
+                  - title: Choice 3 Title Here
+                    condition:
+                      variable:
+                        statset_id: 62fe132cff54f9786ec2ece0
+                        item_id: 62fe132cff54f9786ec2ece1
+                        operator: '>'
+                        value: 20
+                        true_outcome:
+                          statset_id: 62fe132cff54f9786ec2ece0
+                          item_id: 62fe132cff54f9786ec2ece2
+                          operator: +
+                          value: 5
+                          linked_scene_index: 2
+                        false_outcome:
+                          statset_id: 62fe132cff54f9786ec2ece0
+                          item_id: 62fe132cff54f9786ec2ece3
+                          operator: '-'
+                          value: '5'
+                          linked_scene_index: 2
+                  - title: Choice 4 Title Here
+                    condition:
+                      variable:
+                        statset_id: 62fe132cff54f9786ec2ece6
+                        item_id: 62fe132cff54f9786ec2ece9
+                        operator: '>'
+                        value: 20
+                        true_outcome:
+                          statset_id: 62fe132cff54f9786ec2ece6
+                          item_id: 62fe132cff54f9786ec2ece8
+                          operator: +
+                          value: 5
+                          linked_scene_index: 3
+                        false_outcome:
+                          statset_id: 62fe132cff54f9786ec2ece6
+                          item_id: 62fe132cff54f9786ec2ece7
+                          operator: '-'
+                          value: '5'
+                          linked_scene_index: 4
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /choice/edit/62de91bc19068dcdb3b5f589:
+    put:
+      tags:
+        - Choice
+      summary: Update Choice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                choices:
+                  - title: Choice 1 title
+                    condition:
+                      variable:
+                        baseline_id: 62de917719068dcdb3b5f553
+                        statset_id: null
+                        item_id: null
+                        operator: '>'
+                        value: 20
+                        true_outcome:
+                          baseline_id: 62de917719068dcdb3b5f555
+                          statset_id: null
+                          item_id: null
+                          operator: +
+                          value: 5
+                          linked_scene_index: 2
+                        false_outcome:
+                          baseline_id: 62de917719068dcdb3b5f553
+                          statset_id: null
+                          item_id: null
+                          operator: '-'
+                          value: 5
+                          linked_scene_index: 4
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/creator:
+    get:
+      tags:
+        - Users
+      summary: Get Creators
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/getStory:
+    get:
+      tags:
+        - Users
+      summary: user based story
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/rejectReason:
+    get:
+      tags:
+        - Users
+      summary: Reason reject
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+        - name: story_id
+          in: query
+          schema:
+            type: string
+          example: 62e00d6ec5ae226017ee34b1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/creator/62ff30a3b55fa2d9d85edf20/-1:
+    patch:
+      tags:
+        - Users
+      summary: Creator Action
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/userChoice:
+    post:
+      tags:
+        - Users
+      summary: user Choice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userChoices:
+                  - scene_id: 62de66fcb50164a3d8c4a09d
+                    choice_id: 62de6737b50164a3d8c4a0a5
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/userScore:
+    post:
+      tags:
+        - Users
+      summary: user Score
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                baseline:
+                  - title: HP
+                    value: 10
+                statset:
+                  - title: Inventory
+                    items:
+                      - name: Sword
+                        value: 15
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJjNjY5ZmYxZjQzZTc0NDhjYjhhZThlIiwidXNlcl90eXBlIjozLCJpYXQiOjE2NjIwMTY4MDEsImV4cCI6MTY2MjYyMTYwMX0.odq785GrWb99p1UXJ3mq4UEMTLWKEopF8DdDDB_b_Yk
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
