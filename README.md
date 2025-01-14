@@ -1,5 +1,3 @@
----
-
 # **CYOA-Masterminds-Backend**  
 **A No-Code Platform for Creating Your Own Adventure (CYOA) Text-Based Games.**
 
